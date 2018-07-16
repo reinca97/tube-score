@@ -1,0 +1,113 @@
+body {
+  width:300px;
+  height:1000px;
+  padding:20px;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #5d306d;
+  color: #d6d3dc;
+}
+
+a{
+  padding:2px 0;
+  width:88%;
+  color:#d5b8f3;
+  text-decoration:none;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  display:inline-block;
+  float:left;
+}
+
+/*UserInfo component */
+.log-in-out{
+ margin:10px;
+}
+
+
+.user-info{
+  width:150px;
+  padding:10px;
+}
+
+.user-photo{
+  width:25px; height:25px;
+  border-radius:50%;
+}
+
+.user-email{
+  height:25px;
+  margin-top:5px;
+  float:right;
+}
+
+
+
+/*Search component*/
+.search{
+  padding-top:10px;
+  border-top:2px ridge #7d4193;
+  width:100%;
+}
+
+.search-in-this-page{}
+.search-btn-comp{}
+.search-btn{
+  height: 30px;
+  background: #8884b1;
+  color: white;
+  border-radius: 5px;
+  margin:20px auto;
+}
+
+.search-btn.dis{
+  background: #d6d3dc;
+  color: #eeeeee;
+}
+
+.search-or{
+  height:20px;
+  text-align:center;
+}
+.search-input{
+  width:93%;
+  margin-bottom:10px;
+}
+
+/*Result component*/
+.result-list{
+  padding:5px;
+}
+
+.result-entry{
+  width:100%;
+  padding:2px 0;
+}
+
+.result-entry:after{
+  content:"";
+  display:block;
+  clear:both;
+}
+
+.view-more{
+  margin:10px 0;
+  cursor:pointer;
+}
+
+.star {
+  width:6%;
+  float:left;
+  color: grey;
+}
+
+.star:hover{
+  cursor:pointer;
+  color: #cdc587;
+}
+
+.star.true{
+  color:orange;
+}
+

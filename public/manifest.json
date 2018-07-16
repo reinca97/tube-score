@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Tube Score",
+  "description": "I don't know who you are. I don't know what you want. But I will find the score, and I will show ... ",
+
+  "version": "2.1",
+
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+
+
+
+  "permissions": [
+    "identity",
+    "tabs",
+    "http://imslp.org/*/*",
+    "notifications"
+  ],
+
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com https://apis.google.com/; object-src 'self'",
+  "oauth2": {
+    "client_id":"5556162393-4mbom7mq48g8nrd6r50q5cqq6mso0ps7.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  },
+  "key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtvZD0DNYMV8F39yh7w3kNPYdDHpVEnZFBKkw40CHjHAqigIwOALWOnArKmmKW8LyM+0CDXcUF8JDzxmzNiZpeZAzgAxlIYp5PW9t/shC3XGu5ryjMgfFWsrJXhRuTfkniD99SCYMkkzxKMutgXaPstsAOpGRhmzJDkKD39Jxtgdp3Z3904FGZoX4DKmDmBmCgDJUM3Hz6wLiPoj+pInksWlDV1VYceVVbuWRnFUeriXabeW9AXKDB0QT1uJQAPI58IRyZFEht1hIMH1opdJPS4eLhHmjWsTFRMR0x3J6TGUJp/Y1ZSoqaeXZ8lAE1ps58XdoMmCnLGU6ZvHDpAnITwIDAQAB"
+
+
+
+}

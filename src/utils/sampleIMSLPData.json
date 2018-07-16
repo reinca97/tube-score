@@ -1,0 +1,539 @@
+{
+  "kind": "customsearch#search",
+  "url": {
+    "type": "application/json",
+    "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+  },
+  "queries": {
+    "request": [
+      {
+        "title": "Google Custom Search - Meditation from Thaïs",
+        "totalResults": "42",
+        "searchTerms": "Meditation from Thaïs",
+        "count": 10,
+        "startIndex": 1,
+        "inputEncoding": "utf8",
+        "outputEncoding": "utf8",
+        "safe": "off",
+        "cx": "000793084630826721470:j016fsoqtti",
+        "googleHost": "site:imslp.org"
+      }
+    ],
+    "nextPage": [
+      {
+        "title": "Google Custom Search - Meditation from Thaïs",
+        "totalResults": "42",
+        "searchTerms": "Meditation from Thaïs",
+        "count": 10,
+        "startIndex": 11,
+        "inputEncoding": "utf8",
+        "outputEncoding": "utf8",
+        "safe": "off",
+        "cx": "000793084630826721470:j016fsoqtti",
+        "googleHost": "site:imslp.org"
+      }
+    ]
+  },
+  "context": {
+    "title": "Imslp.org"
+  },
+  "searchInformation": {
+    "searchTime": 0.493455,
+    "formattedSearchTime": "0.49",
+    "totalResults": "42",
+    "formattedTotalResults": "42"
+  },
+  "items": [
+    {
+      "kind": "customsearch#result",
+      "title": "Thaïs (Massenet, Jules) - IMSLP/Petrucci Music Library: Free Public ...",
+      "htmlTitle": "\u003cb\u003eThaïs\u003c/b\u003e (\u003cb\u003eMassenet\u003c/b\u003e, Jules) - IMSLP/Petrucci Music Library: Free Public ...",
+      "link": "https://imslp.org/wiki/Tha%C3%AFs_(Massenet,_Jules)",
+      "displayLink": "imslp.org",
+      "snippet": "6 more: Act I, Scene 2 (formerly Act II, Scene 1) • Act II, Scene 1 (formerly Act II, \nScene 2) • Act II, Scene 2 (formerly Act II, Scene 3) • Act III, Scene 1 • Act III, \nScene ...",
+      "htmlSnippet": "6 more: Act I, Scene 2 (formerly Act II, Scene 1) • Act II, Scene 1 (formerly Act II, \u003cbr\u003e\nScene 2) • Act II, Scene 2 (formerly Act II, Scene 3) • Act III, Scene 1 • Act III, \u003cbr\u003e\nScene&nbsp;...",
+      "cacheId": "0drZkIHysigJ",
+      "formattedUrl": "https://imslp.org/wiki/Thaïs_(Massenet,_Jules)",
+      "htmlFormattedUrl": "https://imslp.org/wiki/\u003cb\u003eThaïs\u003c/b\u003e_(\u003cb\u003eMassenet\u003c/b\u003e,_Jules)",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "197",
+            "height": "256",
+            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQmqom-pjLzItcYNC-R2GSLxVPw_G3T2znfMUM9VrLYwH_V1QVFHVuZ_Bpt"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://cdn.imslp.org/images/thumb/pdfs/09/14d5ee4b53682c01c48dd12d3bb3bfa07c652f9c.png"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "List of works by Jules Massenet - IMSLP/Petrucci Music Library: Free ...",
+      "htmlTitle": "List of works by Jules \u003cb\u003eMassenet\u003c/b\u003e - IMSLP/Petrucci Music Library: Free ...",
+      "link": "https://imslp.org/wiki/List_of_works_by_Jules_Massenet",
+      "displayLink": "imslp.org",
+      "snippet": "For mélodies and duos published in the original eight-volume vocal anthology, \nsee Jules Massenet: Collected Songs; these works are not included here.",
+      "htmlSnippet": "For mélodies and duos published in the original eight-volume vocal anthology, \u003cbr\u003e\nsee Jules \u003cb\u003eMassenet\u003c/b\u003e: Collected Songs; these works are not included here.",
+      "cacheId": "cwEL72cyUTwJ",
+      "formattedUrl": "https://imslp.org/wiki/List_of_works_by_Jules_Massenet",
+      "htmlFormattedUrl": "https://imslp.org/wiki/List_of_works_by_Jules_\u003cb\u003eMassenet\u003c/b\u003e",
+      "pagemap": {
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "List of compositions featuring the violin - IMSLP/Petrucci Music ...",
+      "htmlTitle": "List of compositions featuring the violin - IMSLP/Petrucci Music ...",
+      "link": "https://imslp.org/wiki/List_of_compositions_featuring_the_violin",
+      "displayLink": "imslp.org",
+      "snippet": "La Streghe, Op.8. MacDowell, Edward. - To a Humming Bird from 6 Fancies, Op.7 \nNo.2. Massenet, Jules. - Thais Meditation for Violin and Piano. Monti, Vittorio.",
+      "htmlSnippet": "La Streghe, Op.8. MacDowell, Edward. - To a Humming Bird from 6 Fancies, Op.7 \u003cbr\u003e\nNo.2. \u003cb\u003eMassenet\u003c/b\u003e, Jules. - \u003cb\u003eThais Meditation\u003c/b\u003e for Violin and Piano. Monti, Vittorio.",
+      "cacheId": "oPfW-AIMVnUJ",
+      "formattedUrl": "https://imslp.org/wiki/List_of_compositions_featuring_the_violin",
+      "htmlFormattedUrl": "https://imslp.org/wiki/List_of_compositions_featuring_the_violin",
+      "pagemap": {
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Meditation, Op.32 (Glazunov, Aleksandr) - IMSLP/Petrucci Music ...",
+      "htmlTitle": "\u003cb\u003eMeditation\u003c/b\u003e, Op.32 (Glazunov, Aleksandr) - IMSLP/Petrucci Music ...",
+      "link": "https://imslp.org/wiki/Meditation,_Op.32_(Glazunov,_Aleksandr)",
+      "displayLink": "imslp.org",
+      "snippet": "Meditation, Op.32 (Glazunov, Aleksandr). Movements/SectionsMov'ts/Sec's, 1. \nComposition Year, 1891? Genre Categories, Meditations; For violin, orchestra; ...",
+      "htmlSnippet": "\u003cb\u003eMeditation\u003c/b\u003e, Op.32 (Glazunov, Aleksandr). Movements/SectionsMov&#39;ts/Sec&#39;s, 1. \u003cbr\u003e\nComposition Year, 1891? Genre Categories, \u003cb\u003eMeditations\u003c/b\u003e; For violin, orchestra;&nbsp;...",
+      "cacheId": "yECLzZNB958J",
+      "formattedUrl": "https://imslp.org/wiki/Meditation,_Op.32_(Glazunov,_Aleksandr)",
+      "htmlFormattedUrl": "https://imslp.org/wiki/\u003cb\u003eMeditation\u003c/b\u003e,_Op.32_(Glazunov,_Aleksandr)",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "170",
+            "height": "170",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSdEa1KxyUfZgwlYxPce0CA8rU-OZkJpqJHv4W6vpZpbMwlPl6ZeWycFqSW"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://cdn.imslp.org/naxoscache.php?pool=others&file=685738865567.gif"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "La mort de Thaïs (Saint-Saëns, Camille) - IMSLP/Petrucci Music ...",
+      "htmlTitle": "La mort de \u003cb\u003eThaïs\u003c/b\u003e (Saint-Saëns, Camille) - IMSLP/Petrucci Music ...",
+      "link": "http://imslp.org/wiki/La_mort_de_Tha%C3%AFs_(Saint-Sa%C3%ABns%2C_Camille)",
+      "displayLink": "imslp.org",
+      "snippet": "Composition Year, 1895. Genre Categories, Paraphrases; For piano; Scores \nfeaturing the piano; For 1 player. Related Works, Based on Thaïs by Massenet ...",
+      "htmlSnippet": "Composition Year, 1895. Genre Categories, Paraphrases; For piano; Scores \u003cbr\u003e\nfeaturing the piano; For 1 player. Related Works, Based on \u003cb\u003eThaïs\u003c/b\u003e by \u003cb\u003eMassenet\u003c/b\u003e&nbsp;...",
+      "cacheId": "TmWa6Ot8TgUJ",
+      "formattedUrl": "imslp.org/wiki/La_mort_de_Thaïs_(Saint-Saëns%2C_Camille)",
+      "htmlFormattedUrl": "imslp.org/wiki/La_mort_de_\u003cb\u003eThaïs\u003c/b\u003e_(Saint-Saëns%2C_Camille)",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "192",
+            "height": "263",
+            "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR3L6oOHBxxE37l0une-qapWCLRBQ_XyYpU_C5fUtQhZspEd8Ht3QUDyvny"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "http://cdn.imslp.org/images/thumb/pdfs/f1/ee8cbad14dcaf856f8d99bbb2be4a910643a0d19.png"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Category:Massenet, Jules - IMSLP/Petrucci Music Library: Free ...",
+      "htmlTitle": "Category:\u003cb\u003eMassenet\u003c/b\u003e, Jules - IMSLP/Petrucci Music Library: Free ...",
+      "link": "https://imslp.org/wiki/Category:Massenet,_Jules",
+      "displayLink": "imslp.org",
+      "snippet": "Alternative Names/Transliterations: Jules Émile Frédéric Massenet. ＝. Name in \nOther Languages: 儒勒·马斯内, 儒勒·馬斯內, ז'יל מאסנה, 쥘 마스네, ジュール・ ...",
+      "htmlSnippet": "Alternative Names/Transliterations: Jules Émile Frédéric \u003cb\u003eMassenet\u003c/b\u003e. ＝. Name in \u003cbr\u003e\nOther Languages: 儒勒·马斯内, 儒勒·馬斯內, ז&#39;יל מאסנה, 쥘 마스네, ジュール・&nbsp;...",
+      "cacheId": "2h4WO9chYkwJ",
+      "formattedUrl": "https://imslp.org/wiki/Category:Massenet,_Jules",
+      "htmlFormattedUrl": "https://imslp.org/wiki/Category:\u003cb\u003eMassenet\u003c/b\u003e,_Jules",
+      "pagemap": {
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Category:Pieces based on Massenet's 'Thaïs' - IMSLP/Petrucci ...",
+      "htmlTitle": "Category:Pieces based on \u003cb\u003eMassenet&#39;s\u003c/b\u003e &#39;\u003cb\u003eThaïs\u003c/b\u003e&#39; - IMSLP/Petrucci ...",
+      "link": "https://imslp.org/wiki/Category:Pieces_based_on_Massenet%27s_%27Tha%C3%AFs%27",
+      "displayLink": "imslp.org",
+      "snippet": "The list below includes all pages in the category \"Pieces based on Thaïs by \nMassenet\". ... B. Bouquet de mélodies sur 'Thaïs' (Anschütz, Jacques-Albert) ...",
+      "htmlSnippet": "The list below includes all pages in the category &quot;Pieces based on \u003cb\u003eThaïs\u003c/b\u003e by \u003cbr\u003e\n\u003cb\u003eMassenet\u003c/b\u003e&quot;. ... B. Bouquet de mélodies sur &#39;\u003cb\u003eThaïs\u003c/b\u003e&#39; (Anschütz, Jacques-Albert)&nbsp;...",
+      "cacheId": "WGYTzYCg7moJ",
+      "formattedUrl": "https://imslp.org/.../Category:Pieces_based_on_Massenet%27s_%27Thaïs%27",
+      "htmlFormattedUrl": "https://imslp.org/.../Category:Pieces_based_on_\u003cb\u003eMassenet\u003c/b\u003e%27s_%27\u003cb\u003eThaïs\u003c/b\u003e%27",
+      "pagemap": {
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Category:Meditations - IMSLP/Petrucci Music Library: Free Public ...",
+      "htmlTitle": "Category:\u003cb\u003eMeditations\u003c/b\u003e - IMSLP/Petrucci Music Library: Free Public ...",
+      "link": "https://imslp.org/wiki/Category:Meditations",
+      "displayLink": "imslp.org",
+      "snippet": "The list below includes all pages in the category \"Meditations\". This includes \nworks designated by their composers as a 'Meditation' (or méditation) in a title or\n ...",
+      "htmlSnippet": "The list below includes all pages in the category &quot;\u003cb\u003eMeditations\u003c/b\u003e&quot;. This includes \u003cbr\u003e\nworks designated by their composers as a &#39;\u003cb\u003eMeditation\u003c/b\u003e&#39; (or \u003cb\u003eméditation\u003c/b\u003e) in a title or\u003cbr\u003e\n&nbsp;...",
+      "cacheId": "hAOsq12ULq0J",
+      "formattedUrl": "https://imslp.org/wiki/Category:Meditations",
+      "htmlFormattedUrl": "https://imslp.org/wiki/Category:\u003cb\u003eMeditations\u003c/b\u003e",
+      "pagemap": {
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Meditazione (Arrigo, Giuseppe) - IMSLP/Petrucci Music Library: Free ...",
+      "htmlTitle": "Meditazione (Arrigo, Giuseppe) - IMSLP/Petrucci Music Library: Free ...",
+      "link": "https://imslp.org/wiki/Meditation_(Arrigo%2C_Giuseppe)",
+      "displayLink": "imslp.org",
+      "snippet": "Meditazione (Arrigo, Giuseppe). (Redirected from Meditation (Arrigo, Giuseppe)) \n... Work Title, Meditation. Alternative. Title, Meditazione In stiller Betrachtung ...",
+      "htmlSnippet": "Meditazione (Arrigo, Giuseppe). (Redirected from \u003cb\u003eMeditation\u003c/b\u003e (Arrigo, Giuseppe)) \u003cbr\u003e\n... Work Title, \u003cb\u003eMeditation\u003c/b\u003e. Alternative. Title, Meditazione In stiller Betrachtung&nbsp;...",
+      "cacheId": "SvktN941RqQJ",
+      "formattedUrl": "https://imslp.org/wiki/Meditation_(Arrigo%2C_Giuseppe)",
+      "htmlFormattedUrl": "https://imslp.org/wiki/\u003cb\u003eMeditation\u003c/b\u003e_(Arrigo%2C_Giuseppe)",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "196",
+            "height": "257",
+            "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRwx0AhCX7AyGPBkGZHNRrCwsXm7csKDCNsKi--2t0PjwvuHoE2nC6T-Ao"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://cdn.imslp.org/images/thumb/pdfs/ea/f75c44ffb4766e8ba0ed4610008a42a7a7ba3dff.png"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "customsearch#result",
+      "title": "Chérubin (Massenet, Jules) - IMSLP/Petrucci Music Library: Free ...",
+      "htmlTitle": "Chérubin (\u003cb\u003eMassenet\u003c/b\u003e, Jules) - IMSLP/Petrucci Music Library: Free ...",
+      "link": "https://imslp.org/wiki/Ch%C3%A9rubin_(Massenet%2C_Jules)",
+      "displayLink": "imslp.org",
+      "snippet": "Work Title, Chérubin. Alternative. Title, Comédie chantée en trois actes. Name \nTranslations, シェルバン. Name Aliases, Cherubin. Authorities, Wikipedia; BNF: ...",
+      "htmlSnippet": "Work Title, Chérubin. Alternative. Title, Comédie chantée en trois actes. Name \u003cbr\u003e\nTranslations, シェルバン. Name Aliases, Cherubin. Authorities, Wikipedia; BNF:&nbsp;...",
+      "cacheId": "icKjiPWqGJ0J",
+      "formattedUrl": "https://imslp.org/wiki/Chérubin_(Massenet%2C_Jules)",
+      "htmlFormattedUrl": "https://imslp.org/wiki/Chérubin_(\u003cb\u003eMassenet\u003c/b\u003e%2C_Jules)",
+      "pagemap": {
+        "cse_thumbnail": [
+          {
+            "width": "170",
+            "height": "170",
+            "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOWtfmTkCVKhvyN856qYcaQakpysVE4AdUe6q1OUVIcTZnq842GZ5hdIM"
+          }
+        ],
+        "metatags": [
+          {
+            "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+          }
+        ],
+        "cse_image": [
+          {
+            "src": "https://cdn.imslp.org/naxoscache.php?pool=others&file=886445800623.gif"
+          }
+        ]
+      }
+    },
+  //////
+
+  {
+    "kind": "customsearch#result",
+    "title": "10 Pièces de genre, Op.10 (Massenet, Jules) - IMSLP/Petrucci ...",
+    "htmlTitle": "10 Pièces de genre, Op.10 (\u003cb\u003eMassenet\u003c/b\u003e, Jules) - IMSLP/Petrucci ...",
+    "link": "https://imslp.org/wiki/10_Pi%C3%A8ces_de_genre%2C_Op.10_(Massenet%2C_Jules)",
+    "displayLink": "imslp.org",
+    "snippet": "Misc. Notes, Plate numbers are identical to the original edition, however many of \nthe pieces are revised and expanded here. Purchase. Recordings.",
+    "htmlSnippet": "Misc. Notes, Plate numbers are identical to the original edition, however many of \u003cbr\u003e\nthe pieces are revised and expanded here. Purchase. Recordings.",
+    "cacheId": "JJUb2guUBEQJ",
+    "formattedUrl": "https://imslp.org/.../10_Pièces_de_genre%2C_Op.10_(Massenet%2C_Jules)",
+    "htmlFormattedUrl": "https://imslp.org/.../10_Pièces_de_genre%2C_Op.10_(\u003cb\u003eMassenet\u003c/b\u003e%2C_Jules)",
+    "pagemap": {
+      "cse_thumbnail": [
+        {
+          "width": "170",
+          "height": "170",
+          "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTmNVvJiUzuwsxD02C2vv_VRyBnvavT-6a2OSLsuqxthewg2aQN7wgwCXc"
+        }
+      ],
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ],
+      "cse_image": [
+        {
+          "src": "https://cdn.imslp.org/naxoscache.php?pool=others&file=0724358551754.gif"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Le Cid (Massenet, Jules) - IMSLP/Petrucci Music Library: Free ...",
+    "htmlTitle": "Le Cid (\u003cb\u003eMassenet\u003c/b\u003e, Jules) - IMSLP/Petrucci Music Library: Free ...",
+    "link": "https://imslp.org/wiki/Le_Cid_(Massenet,_Jules)",
+    "displayLink": "imslp.org",
+    "snippet": "Le Cid (Massenet, Jules) ...... Operas by Jules Massenet · La grand'tante (1867); \nDon César de Bazan (1872); L'adorable Bel'-Boul' (1873); Le roi de Lahore ...",
+    "htmlSnippet": "Le Cid (\u003cb\u003eMassenet\u003c/b\u003e, Jules) ...... Operas by Jules \u003cb\u003eMassenet\u003c/b\u003e &middot; La grand&#39;tante (1867); \u003cbr\u003e\nDon César de Bazan (1872); L&#39;adorable Bel&#39;-Boul&#39; (1873); Le roi de Lahore&nbsp;...",
+    "cacheId": "f9j_3QGtX3kJ",
+    "formattedUrl": "https://imslp.org/wiki/Le_Cid_(Massenet,_Jules)",
+    "htmlFormattedUrl": "https://imslp.org/wiki/Le_Cid_(\u003cb\u003eMassenet\u003c/b\u003e,_Jules)",
+    "pagemap": {
+      "cse_thumbnail": [
+        {
+          "width": "189",
+          "height": "267",
+          "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc07a4uIFmhFI2yQ6oy2tyojEYKsPUff9iA6tct5Bl71CqqDQr51iT4kI"
+        }
+      ],
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ],
+      "cse_image": [
+        {
+          "src": "https://cdn.imslp.org/images/thumb/pdfs/16/04fb5eda3828d31591195b1be51ebb45f13ec212.png"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "User:Generoso - IMSLP/Petrucci Music Library: Free Public Domain ...",
+    "htmlTitle": "User:Generoso - IMSLP/Petrucci Music Library: Free Public Domain ...",
+    "link": "https://imslp.org/wiki/User:Generoso",
+    "displayLink": "imslp.org",
+    "snippet": "... Robert) (cello solo part); School of Bowing Technique Op.2 for Cello (Ševčík, \nOtakar) · Meditation from Thaïs (Thais) for cello and piano (Massenet, Jules) · Der\n ...",
+    "htmlSnippet": "... Robert) (cello solo part); School of Bowing Technique Op.2 for Cello (Ševčík, \u003cbr\u003e\nOtakar) &middot; \u003cb\u003eMeditation from Thaïs\u003c/b\u003e (Thais) for cello and piano (Massenet, Jules) &middot; Der\u003cbr\u003e\n&nbsp;...",
+    "cacheId": "j4LyUtozMhQJ",
+    "formattedUrl": "https://imslp.org/wiki/User:Generoso",
+    "htmlFormattedUrl": "https://imslp.org/wiki/User:Generoso",
+    "pagemap": {
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Élégie (Massenet, Jules) - IMSLP/Petrucci Music Library: Free Public ...",
+    "htmlTitle": "Élégie (\u003cb\u003eMassenet\u003c/b\u003e, Jules) - IMSLP/Petrucci Music Library: Free Public ...",
+    "link": "https://imslp.org/wiki/%C3%89l%C3%A9gie_(Massenet%2C_Jules)",
+    "displayLink": "imslp.org",
+    "snippet": "Élégie (Massenet, Jules). Composition Year, 1872 ca. ... Naxos. Search key: \nmassenet elegie. change. (Top 10 results below). 1; 2; 3. Synthesized/MIDI.",
+    "htmlSnippet": "Élégie (\u003cb\u003eMassenet\u003c/b\u003e, Jules). Composition Year, 1872 ca. ... Naxos. Search key: \u003cbr\u003e\n\u003cb\u003emassenet\u003c/b\u003e elegie. change. (Top 10 results below). 1; 2; 3. Synthesized/MIDI.",
+    "cacheId": "w6PnQRzHBqIJ",
+    "formattedUrl": "https://imslp.org/wiki/Élégie_(Massenet%2C_Jules)",
+    "htmlFormattedUrl": "https://imslp.org/wiki/Élégie_(\u003cb\u003eMassenet\u003c/b\u003e%2C_Jules)",
+    "pagemap": {
+      "cse_thumbnail": [
+        {
+          "width": "170",
+          "height": "170",
+          "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTeF-mi7f-FxwmvkoyZQvDoz83zlCArkKJpCOMXt6jWQF7WkaGCi4DHLj0"
+        }
+      ],
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ],
+      "cse_image": [
+        {
+          "src": "https://cdn.imslp.org/naxoscache.php?pool=others&file=696998789425.gif"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "List of Compositions Featuring the Cello - IMSLP/Petrucci Music ...",
+    "htmlTitle": "List of Compositions Featuring the Cello - IMSLP/Petrucci Music ...",
+    "link": "https://imslp.org/wiki/List_of_Compositions_Featuring_the_Cello",
+    "displayLink": "imslp.org",
+    "snippet": "Mélodie for Cello and Piano, H.99 · Meditation and Spring Song from 4 Short ...... \nMeditation from Thaïs for cello and piano · Melodie from 10 Pièces de Genre, ...",
+    "htmlSnippet": "Mélodie for Cello and Piano, H.99 &middot; Meditation and Spring Song from 4 Short ...... \u003cbr\u003e\n\u003cb\u003eMeditation from Thaïs\u003c/b\u003e for cello and piano &middot; Melodie from 10 Pièces de Genre,&nbsp;...",
+    "cacheId": "Iund-ne_M_EJ",
+    "formattedUrl": "https://imslp.org/wiki/List_of_Compositions_Featuring_the_Cello",
+    "htmlFormattedUrl": "https://imslp.org/wiki/List_of_Compositions_Featuring_the_Cello",
+    "pagemap": {
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Category:Gallet, Louis - IMSLP/Petrucci Music Library: Free Public ...",
+    "htmlTitle": "Category:Gallet, Louis - IMSLP/Petrucci Music Library: Free Public ...",
+    "link": "https://imslp.org/wiki/Category:Gallet,_Louis",
+    "displayLink": "imslp.org",
+    "snippet": "Le cadi dupé (Monsigny, Pierre-Alexandre) · Chanson de Capri (Massenet, Jules\n) · Chantez, voix bénies (Gounod, Charles) · Le chevalier Jean (Joncières, ...",
+    "htmlSnippet": "Le cadi dupé (Monsigny, Pierre-Alexandre) &middot; Chanson de Capri (\u003cb\u003eMassenet\u003c/b\u003e, Jules\u003cbr\u003e\n) &middot; Chantez, voix bénies (Gounod, Charles) &middot; Le chevalier Jean (Joncières,&nbsp;...",
+    "cacheId": "ckY2NFcDbxUJ",
+    "formattedUrl": "https://imslp.org/wiki/Category:Gallet,_Louis",
+    "htmlFormattedUrl": "https://imslp.org/wiki/Category:Gallet,_Louis",
+    "pagemap": {
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Category:For violin, piano, organ (arr) - IMSLP/Petrucci Music ...",
+    "htmlTitle": "Category:For violin, piano, organ (arr) - IMSLP/Petrucci Music ...",
+    "link": "http://imslp.org/wiki/Category:For_violin,_piano,_organ_(arr)",
+    "displayLink": "imslp.org",
+    "snippet": "M. Méditation (Bordier, Jules) ... T. Thaïs (Massenet, Jules) · Transcriptions \nconcertantes, Op.83 (Méreaux, Jean-Amédée Lefroid de) ...",
+    "htmlSnippet": "M. \u003cb\u003eMéditation\u003c/b\u003e (Bordier, Jules) ... T. \u003cb\u003eThaïs\u003c/b\u003e (\u003cb\u003eMassenet\u003c/b\u003e, Jules) &middot; Transcriptions \u003cbr\u003e\nconcertantes, Op.83 (Méreaux, Jean-Amédée Lefroid de)&nbsp;...",
+    "cacheId": "DDt5RNEyMMIJ",
+    "formattedUrl": "imslp.org/wiki/Category:For_violin,_piano,_organ_(arr)",
+    "htmlFormattedUrl": "imslp.org/wiki/Category:For_violin,_piano,_organ_(arr)",
+    "pagemap": {
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Category:For violin, strings (arr) - IMSLP/Petrucci Music Library: Free ...",
+    "htmlTitle": "Category:For violin, strings (arr) - IMSLP/Petrucci Music Library: Free ...",
+    "link": "https://imslp.org/wiki/Category:For_violin,_strings_(arr)",
+    "displayLink": "imslp.org",
+    "snippet": "T. Thaïs (Massenet, Jules) · Tribute to Luis Gregory (Wong, Victor A.) V. \nVariations sur un air Styrien, Op.12 (Täglichsbeck, Thomas) · Violin Concertino in\n ...",
+    "htmlSnippet": "T. \u003cb\u003eThaïs\u003c/b\u003e (\u003cb\u003eMassenet\u003c/b\u003e, Jules) &middot; Tribute to Luis Gregory (Wong, Victor A.) V. \u003cbr\u003e\nVariations sur un air Styrien, Op.12 (Täglichsbeck, Thomas) &middot; Violin Concertino in\u003cbr\u003e\n&nbsp;...",
+    "cacheId": "zzIJ-8_lvQ8J",
+    "formattedUrl": "https://imslp.org/wiki/Category:For_violin,_strings_(arr)",
+    "htmlFormattedUrl": "https://imslp.org/wiki/Category:For_violin,_strings_(arr)",
+    "pagemap": {
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Category:Mandozzi, Orfeo - IMSLP/Petrucci Music Library: Free ...",
+    "htmlTitle": "Category:Mandozzi, Orfeo - IMSLP/Petrucci Music Library: Free ...",
+    "link": "https://imslp.org/wiki/Category:Mandozzi,_Orfeo",
+    "displayLink": "imslp.org",
+    "snippet": "All works by this person are still under copyright in Canada, the EU, Japan, and \nelsewhere and are thus subject to deletion. The works are also probably ...",
+    "htmlSnippet": "All works by this person are still under copyright in Canada, the EU, Japan, and \u003cbr\u003e\nelsewhere and are thus subject to deletion. The works are also probably&nbsp;...",
+    "cacheId": "LmpNBCoE8OAJ",
+    "formattedUrl": "https://imslp.org/wiki/Category:Mandozzi,_Orfeo",
+    "htmlFormattedUrl": "https://imslp.org/wiki/Category:Mandozzi,_Orfeo",
+    "pagemap": {
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "customsearch#result",
+    "title": "Opera Intermezzi (Gribben, John) - IMSLP/Petrucci Music Library ...",
+    "htmlTitle": "Opera Intermezzi (Gribben, John) - IMSLP/Petrucci Music Library ...",
+    "link": "https://imslp.org/wiki/Opera_Intermezzi_(Gribben,_John)",
+    "displayLink": "imslp.org",
+    "snippet": "... Méditation from Thaïs by Jules Massenet; Intermezzo from Khovanshchina by \nModest Mussorgsky; Intermezzo from Manon Lescaut by Giacomo Puccini ...",
+    "htmlSnippet": "... \u003cb\u003eMéditation from Thaïs\u003c/b\u003e by Jules Massenet; Intermezzo from Khovanshchina by \u003cbr\u003e\nModest Mussorgsky; Intermezzo from Manon Lescaut by Giacomo Puccini&nbsp;...",
+    "cacheId": "JPggU5JbrKgJ",
+    "formattedUrl": "https://imslp.org/wiki/Opera_Intermezzi_(Gribben,_John)",
+    "htmlFormattedUrl": "https://imslp.org/wiki/Opera_Intermezzi_(Gribben,_John)",
+    "pagemap": {
+      "cse_thumbnail": [
+        {
+          "width": "189",
+          "height": "267",
+          "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtRF54ROUM7Y4npDbgq3_XaUSp3fu8S4ARusHqX7OGf1HtsI2O-Sl0GD0"
+        }
+      ],
+      "metatags": [
+        {
+          "viewport": "width=device-width, initial-scale=1, maximum-scale=1"
+        }
+      ],
+      "cse_image": [
+        {
+          "src": "https://cdn.imslp.org/images/thumb/pdfs/8a/0b2a380f00d1faadade9551ed14df090dce03502.png"
+        }
+      ]
+    }
+  }
+]
+}
+

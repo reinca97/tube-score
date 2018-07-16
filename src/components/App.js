@@ -1,0 +1,499 @@
+import React, { Component } from 'react'
+import {Route,Link} from 'react-router-dom'
+import Profile from './Profile'
+import Search from './Search'
+import Result from './Result'
+import Favorite from './Favorite'
+import {getYoutubeData} from '../utils/youtube'
+import {getIMSLPData} from '../utils/IMSLP'
+
+import firebase from '../services/firebase'
+// const uuidv4 = require('uuid/v4');
+/* global chrome */
+
+
+var tempfavorite=[];
+
+class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isLogin: false,
+      token: "",
+      userData: {
+        uid:"",
+        userName: "",
+        userPhotoUrl: "",
+        userEmail: ""
+      },
+      favorite: [
+        {date:"0000-00-00",link:"",title:""}
+      ],
+
+      pageUrlTap: "",
+      pageUrlOut: "",
+
+      isYoutubeUrlTap: false,
+      videoTitleTap: "",
+      searchTextTap: "", //(현재 사이트 주소)검색할 텍스트 찾아서 설정하기
+
+      isYoutubeUrlOut:false,
+      searchInputUrl: "",
+      videoTitleOut: "",
+      searchTextOut: "", //(input 창 주소)검색할 텍스트 찾아서 설정하기
+
+      currentSearchIndex:1,
+      searchText:"",
+      dataItems:[]
+    };
+  }
+
+  getUserFavorite=()=>{
+    var userFavoriteRef=firebase.database().ref(`users/${uid}/favorite`);
+    userFavoriteRef.on('value',(snapshot)=>{
+      var snapshotObj=snapshot.val();
+
+      console.log(snapshotObj);
+    })//snapshot ends
+  };
+
+
+  componentDidMount() {
+    //로그인 확인
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+
+        var userSetting = {
+          userName: user.displayName,
+          userPhotoUrl: user.photoURL,
+          userEmail: user.email,
+          uid: user.uid
+        };
+
+        this.setState({
+          isLogin: true,
+          userData: userSetting
+        })
+
+      } else {
+        // No user is signed in.
+        var userSetting = {
+          userName: "",
+          userPhotoUrl: "",
+          userEmail: "",
+          uid: ""
+        };
+
+        this.setState({
+          isLogin: false,
+          userData: userSetting
+        });
+
+      }
+    });
+
+    //영상 타이틀 가져오기
+    this.getTapURL();
+
+  };
+
+  onClickLogin = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(result => {
+      var token = result.credential.accessToken;
+
+      // The signed-in user info.
+      var user = result.user;
+
+      console.log("aaa",user);
+      var userSetting = {
+        userName: user.displayName,
+        userPhotoUrl: user.photoURL,
+        userEmail: user.email,
+        uid: user.uid
+      };
+
+      this.setState({
+        token: token,
+        isLogin: true,
+        userData: userSetting
+      });
+
+
+    })
+      .catch(error => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+
+        console.log(`error:${errorCode} at ${email}. ${errorMessage}. ${credential}`)
+      });
+
+    var startAuth = (interactive) => {
+      // Request an OAuth token from the Chrome Identity API.
+      chrome.identity.getAuthToken({interactive: !!interactive}, function (token) {
+        if (chrome.runtime.lastError && !interactive) {
+          console.log('It was not possible to get a token programmatically.');
+        } else if (chrome.runtime.lastError) {
+          console.error(chrome.runtime.lastError);
+        } else if (token) {
+          // Authorize Firebase with the OAuth Access Token.
+          var credential = firebase.auth.GoogleAuthProvider.credential(null, token);
+          firebase.auth().signInAndRetrieveDataWithCredential(credential).catch(function (error) {
+            // The OAuth token might have been invalidated. Lets' remove it from cache.
+            if (error.code === 'auth/invalid-credential') {
+              chrome.identity.removeCachedAuthToken({token: token}, function () {
+                startAuth(interactive);
+              });
+            }
+          });
+        } else {
+          console.error('The OAuth Token was null');
+        }
+      });
+    };
+    startAuth(true);
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        console.log(user);
+
+        var userSetting = {
+          userName: user.displayName,
+          userPhotoUrl: user.photoURL,
+          userEmail: user.email,
+          uid: user.uid
+        };
+
+        this.setState({
+          isLogin: true,
+          userData: userSetting
+        });
+
+
+        //uid로 데이터 읽어오기
+        firebase.database().ref(`/users/${user.uid}`).once('value')
+          .then((snapshot) => {
+            var userInfo = (snapshot.val());
+            //아이디가 있는경우
+            if (userInfo) {
+              console.log("uid exist");
+
+            } else {
+              //uid 없는경우(최초 접속) : set
+              console.log("no uid found");
+              firebase.database().ref(`users/${user.uid}`).set({
+                email: user.email
+              });
+            }
+
+            tempfavorite = userInfo.favorite;
+            this.setState({
+              favorite: tempfavorite
+            })
+
+          });
+
+
+      } else {
+        // No user is signed in.
+        var userSetting = {
+          userName: "",
+          userPhotoUrl: "",
+          userEmail: ""
+        };
+        this.setState({
+          isLogin: false,
+          userData: userSetting
+        });
+        console.log("no user")
+      }
+    });
+
+    var myURL = "about:blank"; // A default url just in case below code doesn't work
+    chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+      // onUpdated should fire when the selected tab is changed or a link is clicked
+      chrome.tabs.getSelected(null, function (tab) {
+        myURL = tab.url;
+      });
+    });
+
+  };
+
+  onClickLogout = () => {
+    if (this.state.isLogin) {
+      this.setState({
+        isLogin: false
+      })
+    }
+
+    chrome.identity.getAuthToken({interactive: true}, (token) => {
+      chrome.identity.removeCachedAuthToken({token: this.state.token});
+    });
+
+    firebase.auth().signOut().then(function () {
+      // Sign-out successful.
+
+    }).catch(function (error) {
+      // An error happened.
+      throw(error);
+    });
+
+
+  };
+
+  //현재창 주소로 영상 타이틀 가져오기
+  getTapURL = () => {
+    chrome.tabs.getSelected(null, tab => {
+      var tablink = tab.url;
+      //1.현재 주소가 youtube인경우
+      if (tablink.indexOf("https://www.youtube.com") !== -1) {
+        // 1) youtube 메인페이지일 경우(검색 불가)
+        if (tablink === "https://www.youtube.com"||tablink ==="https://www.youtube.com/") {
+          this.setState({
+            isYoutubeUrlTap: true,
+            videoTitleTap: "메인 페이지 입니다. 유튜브 동영상을 선택해주세요."
+          });
+
+        }else{
+          // 2)youtube 페이지인 경우: API 요청
+          getYoutubeData(tablink, (error, data) => {
+            if (error) {
+              window.alert("유효한 주소가 아닙니다. 주소를 다시 확인해주세요.")
+
+            } else {
+              var tempTitle = "";
+              if (data.data.items[0]) {
+                tempTitle = data.data.items[0].snippet.title;
+                this.setState({
+                  isYoutubeUrlTap: true,
+                  videoTitleTap: tempTitle,
+                  pageUrlTap: tablink,
+                  searchTextTap:""  //수정하기
+                })
+
+              } else {
+                //youtube 주소이지만 해당 주소의 동영상이 없는 경우
+                tempTitle = "유효한 주소가 아닙니다. 주소를 다시 확인해주세요.";
+                this.setState({
+                  isYoutubeUrlTap: false,
+                  videoTitleTap: tempTitle,
+                })
+              }
+
+            }
+          })
+        }
+      }else {
+        // 2. 현재 주소가 youtube 아닌 경우
+        this.setState({
+          isYoutubeUrlTap: false,
+          videoTitleTap: "이 기능은 유튜브 사이트 내에서 이용 가능합니다."
+        });
+      }
+
+    });
+  };
+
+  //input 의 url 로 타이틀 가져오기
+  getInputURL = (text) => {
+    var tablink = text;
+
+    //1.현재 주소가 youtube인경우
+    if (tablink.indexOf("https://www.youtube.com") !== -1) {
+      // 1) youtube 메인페이지일 경우(검색 불가)
+      if (tablink ==="https://www.youtube.com"||tablink ==="https://www.youtube.com/" ) {
+        this.setState({
+          isYoutubeUrlOut: true,
+          videoTitleOut :"메인 페이지 입니다. 유튜브 동영상을 선택해주세요."
+        });
+
+      }else{
+        // 2)youtube 페이지인 경우: API 요청
+        getYoutubeData(tablink, (error, data) => {
+          if (error) {
+            window.alert("유효한 주소가 아닙니다. 주소를 다시 확인해주세요.")
+
+          } else {
+            var tempTitle = "";
+            if (data.data.items[0]) {
+              tempTitle = data.data.items[0].snippet.title;
+              this.setState({
+                isYoutubeUrlOut: true,
+                videoTitleOut: tempTitle,
+                pageUrlOut: tablink,
+                searchTextOut:""  //수정하기
+              })
+
+            } else {
+              //youtube 주소이지만 해당 주소의 동영상이 없는 경우
+              tempTitle = "유효한 주소가 아닙니다. 주소를 다시 확인해주세요.";
+              this.setState({
+                isYoutubeUrlOut: false,
+                videoTitleOut: tempTitle,
+              })
+            }
+
+          }
+        });
+      }
+    }else {
+      // 2. 현재 주소가 youtube 아닌 경우
+      this.setState({
+        isYoutubeUrlOut: false,
+        videoTitleOut: "이 기능은 유튜브 사이트 내에서 이용 가능합니다."
+      });
+    }
+  };
+
+
+  //현재창 주소로 IMSLP 악보 찾기 ㄱㄱ
+  onSearchThisScore =()=>{
+    var searchText= this.state.videoTitleTap;
+    //view more 용 공통 텍스트 정의
+
+    getIMSLPData(searchText,this.state.currentSearchIndex, (error,data)=>{
+
+      console.log(data.data);
+      var tempItem= data.data.items.slice();
+
+      //isFavorite 항목 만들어주기
+      if(tempItem){
+        for(var i=0;i<tempItem.length;i++){
+          tempItem[i].isFavorite=false;
+        }
+      }
+
+
+      this.setState({
+        searchText:searchText,
+        currentSearchIndex:1,
+        dataItems:tempItem
+      })
+    });
+
+  };
+
+  // input 의 url 로 IMSLP 악보 찾기 ㄱ ㄱ
+  onSearchOtherScore=()=>{
+    var searchText = this.state.videoTitleOut;
+    //view more 용 공통 텍스트 정의
+    this.setState({
+      searchText:searchText,
+      currentSearchIndex:1
+    });
+
+    getIMSLPData(searchText,this.state.currentSearchIndex, (error,data)=>{
+
+      console.log(data.data);
+      var tempItem= data.data.items.slice();
+
+      //isFavorite 항목 만들어주기
+      if(tempItem){
+        for(var i=0;i<tempItem.length;i++){
+          tempItem[i].isFavorite=false;
+        }
+      }
+
+
+      this.setState({
+        dataItems:tempItem
+      })
+    });
+
+  };
+
+  viewMore=()=>{
+    var tempIndex=this.state.currentSearchIndex+10;
+
+    this.setState({
+      currentSearchIndex:tempIndex
+    });
+
+    getIMSLPData(this.state.searchText,tempIndex,(error,data)=>{
+      var tempItem= this.state.dataItems.concat(data.data.items);
+
+      this.setState({
+        dataItems:tempItem
+      })
+
+    });
+
+  };
+
+  starLighting=(index)=>{
+    var tempItems = this.state.dataItems.slice();
+
+    tempItems[index].isFavorite = !tempItems[index].isFavorite;
+    this.setState({
+      dataItems: tempItems
+    });
+
+   //firebase로 전송할 favorite 배열 만들기
+    var sendToFirebase=[];
+    for(var i=0;i<tempItems.length;i++){
+      if(tempItems[i].isFavorite){
+        var tempArr=[{
+          "title":tempItems[i].title,
+          "link":tempItems[i].link,
+          "date":new Date()
+        }];
+         sendToFirebase.push(tempArr) ;
+      }
+    }
+
+    firebase.database().ref(`users/${this.state.userData.uid}`).update({
+        favorite:sendToFirebase,
+    });
+
+  };
+
+  render() {
+
+    return (
+      <div className="App">
+
+        <h1>TubeScore</h1>
+
+        <Profile
+          userData={this.state.userData}
+          isLogin={this.state.isLogin}
+          onClickLogout={this.onClickLogout}
+          onClickLogin={this.onClickLogin}
+        />
+
+        <Search
+          getInputURL={this.getInputURL}
+          onSearchThisScore={this.onSearchThisScore}
+          onSearchOtherScore={this.onSearchOtherScore}
+          isYoutubeUrlTap={this.state.isYoutubeUrlTap}
+          isYoutubeUrlOut={this.state.isYoutubeUrlOut}
+          videoTitleTap={this.state.videoTitleTap}
+          videoTitleOut={this.state.videoTitleOut}
+        />
+
+
+         <Result
+           starLighting={this.starLighting}
+           viewMore={this.viewMore}
+           dataItems={this.state.dataItems}
+           popUpScore={this.popUpScore}
+         />
+
+        <Favorite/>
+
+
+      </div>
+    );
+  }
+
+};
+
+export default App;
