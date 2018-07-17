@@ -1,49 +1,42 @@
 import React, { Component } from 'react';
+import ResultEntry from './ResultEntry'
 
 /* global chrome */
 class Result extends Component {
 
   render() {
-    let linkUrl="";
+
     return (
       <div className="result-list">
+        {this.props.dataItems==="no-result"?
+          (
+            <div className="no-result-entry">
+              검색 결과가 없습니다.
+            </div>
+          ):(
+            <div>
+              {this.props.dataItems&&
+              this.props.dataItems.map( (item,index)=>{
+                return(
+                  <ResultEntry
+                    starLighting={this.props.starLighting}
+                    item={item}
+                    index={index}
+                    linkUrl={String(item.link)}
+                  />
+                )
 
-        {
-          this.props.dataItems&&
-          this.props.dataItems.map( (item,index)=>{
-          linkUrl=String(item.link);
+              })
+              }
 
-          return(
-            <div className="result-entry">
-
-              <span
-                className={`star ${item.isFavorite}`}
-                onClick={()=>this.props.starLighting(index)}
-              >
-                &#9733;
+              <span className="view-more" onClick={this.props.viewMore} >
+                view more
               </span>
 
-              <a href={linkUrl}  target="_blank" >
-                {`${index+1}. ${item.title}`}
-              </a>
-
             </div>
-            )
-          }
-        )}
-
-
-        <span
-          className="view-more"
-          onClick={this.props.viewMore}
-        >
-          view more
-        </span>
-
+          )
+        }
       </div>
-
-
-
     );
   }
 }

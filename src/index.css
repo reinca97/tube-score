@@ -85,6 +85,12 @@ a{
   padding:2px 0;
 }
 
+.no-result-entry{
+  font-size:15px;
+  text-align:center;
+  color: #fff4d6;
+}
+
 .result-entry:after{
   content:"";
   display:block;

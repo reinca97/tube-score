@@ -12,7 +12,6 @@ import firebase from '../services/firebase'
 /* global chrome */
 
 
-var tempfavorite=[];
 
 class App extends Component {
   constructor(props, context) {
@@ -28,7 +27,7 @@ class App extends Component {
         userEmail: ""
       },
       favorite: [
-        {date:"0000-00-00",link:"",title:""}
+        // {date:"0000-00-00",link:"",title:""}
       ],
 
       pageUrlTap: "",
@@ -49,16 +48,6 @@ class App extends Component {
     };
   }
 
-  getUserFavorite=()=>{
-    var userFavoriteRef=firebase.database().ref(`users/${uid}/favorite`);
-    userFavoriteRef.on('value',(snapshot)=>{
-      var snapshotObj=snapshot.val();
-
-      console.log(snapshotObj);
-    })//snapshot ends
-  };
-
-
   componentDidMount() {
     //로그인 확인
     firebase.auth().onAuthStateChanged(user => {
@@ -75,10 +64,72 @@ class App extends Component {
         this.setState({
           isLogin: true,
           userData: userSetting
-        })
+        });
 
-      } else {
-        // No user is signed in.
+        ///////////////////////////////////
+        //자동로그인시 유저 데이터베이스 읽어오기 추가//
+        ///////////////////////////////////
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            // User is signed in.
+            console.log(user);
+
+            var userSetting = {
+              userName: user.displayName,
+              userPhotoUrl: user.photoURL,
+              userEmail: user.email,
+              uid: user.uid
+            };
+
+            this.setState({
+              isLogin: true,
+              userData: userSetting
+            });
+
+
+            //uid로 데이터 읽어오기
+            firebase.database().ref(`/users/${user.uid}`).once('value')
+              .then((snapshot) => {
+                var userInfo = (snapshot.val());
+                //아이디가 있는경우
+                if (userInfo) {
+                  console.log("uid exist");
+
+                  //user database에서 즐겨찾기 정보만 가져옴
+                  let tempFavorite = userInfo.favorite;
+                  console.log("read from fb",tempFavorite);
+                  this.setState({
+                    favorite: tempFavorite
+                  })
+
+                } else {
+                  //uid 없는경우(최초 접속) : set
+                  console.log("no uid found");
+                  firebase.database().ref(`users/${user.uid}`).set({
+                    email: user.email
+                  });
+                }
+              });
+
+
+          } else {
+            // No user is signed in.
+            var userSetting = {
+              userName: "",
+              userPhotoUrl: "",
+              userEmail: ""
+            };
+            this.setState({
+              isLogin: false,
+              userData: userSetting
+            });
+            console.log("no user")
+          }
+        });
+        ///////////////끝///////////////////
+
+      } else { // No user is signed in.
+
         var userSetting = {
           userName: "",
           userPhotoUrl: "",
@@ -107,20 +158,18 @@ class App extends Component {
       // The signed-in user info.
       var user = result.user;
 
-      console.log("aaa",user);
       var userSetting = {
         userName: user.displayName,
         userPhotoUrl: user.photoURL,
         userEmail: user.email,
         uid: user.uid
       };
-
+      //reset user data
       this.setState({
         token: token,
         isLogin: true,
         userData: userSetting
       });
-
 
     })
       .catch(error => {
@@ -186,6 +235,14 @@ class App extends Component {
             if (userInfo) {
               console.log("uid exist");
 
+              //user database에서 즐겨찾기 정보만 가져옴
+              let tempFavorite = userInfo.favorite;
+              console.log("read from fb",tempFavorite);
+
+              this.setState({
+                favorite: tempFavorite
+              })
+
             } else {
               //uid 없는경우(최초 접속) : set
               console.log("no uid found");
@@ -194,10 +251,7 @@ class App extends Component {
               });
             }
 
-            tempfavorite = userInfo.favorite;
-            this.setState({
-              favorite: tempfavorite
-            })
+
 
           });
 
@@ -230,7 +284,10 @@ class App extends Component {
   onClickLogout = () => {
     if (this.state.isLogin) {
       this.setState({
-        isLogin: false
+        isLogin: false,
+        searchText:"",
+        dataItems:[],
+        favorite:[]
       })
     }
 
@@ -353,30 +410,53 @@ class App extends Component {
     }
   };
 
+  //input으로 favorite 내부 검색
+  getInputText = (text) =>{
+    console.log("favoriteSearch",text);
+  };
 
   //현재창 주소로 IMSLP 악보 찾기 ㄱㄱ
   onSearchThisScore =()=>{
     var searchText= this.state.videoTitleTap;
-    //view more 용 공통 텍스트 정의
 
     getIMSLPData(searchText,this.state.currentSearchIndex, (error,data)=>{
 
-      console.log(data.data);
-      var tempItem= data.data.items.slice();
-
-      //isFavorite 항목 만들어주기
-      if(tempItem){
-        for(var i=0;i<tempItem.length;i++){
-          tempItem[i].isFavorite=false;
-        }
+      var currentFavorite=[];
+      //이미 database 에 favorite 가진 경우에는 복사해오기
+      if(this.state.favorite.length!==0){
+        currentFavorite = this.state.favorite.slice();
       }
 
+      //starLighting 에서 쓸 isFavorite 항목 만들어주기
+      //검색 결과가 있는 경우
+      if(data.data.items){
+        var tempItem= data.data.items.slice();
 
-      this.setState({
-        searchText:searchText,
-        currentSearchIndex:1,
-        dataItems:tempItem
-      })
+        for(var i=0;i<tempItem.length;i++){
+          tempItem[i].isFavorite=false;
+
+          for(var k=0;k<currentFavorite.length;k++){
+            //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+            if(tempItem[i].link===currentFavorite[k].link){
+              tempItem[i].isFavorite=true;
+            }
+          }
+        }
+
+        this.setState({
+          searchText:searchText, //view more 용 공통 텍스트
+          dataItems:tempItem
+        })
+
+      }else{
+        //검색 결과가 없는 경우
+        this.setState({
+          searchText:searchText,
+          dataItems:"no-result"
+        })
+
+      }
+
     });
 
   };
@@ -384,28 +464,44 @@ class App extends Component {
   // input 의 url 로 IMSLP 악보 찾기 ㄱ ㄱ
   onSearchOtherScore=()=>{
     var searchText = this.state.videoTitleOut;
-    //view more 용 공통 텍스트 정의
-    this.setState({
-      searchText:searchText,
-      currentSearchIndex:1
-    });
 
     getIMSLPData(searchText,this.state.currentSearchIndex, (error,data)=>{
 
-      console.log(data.data);
-      var tempItem= data.data.items.slice();
-
-      //isFavorite 항목 만들어주기
-      if(tempItem){
-        for(var i=0;i<tempItem.length;i++){
-          tempItem[i].isFavorite=false;
-        }
+      var currentFavorite=[];
+      //이미 database 에 favorite 가진 경우에는 복사해오기
+      if(this.state.favorite.length!==0){
+        currentFavorite = this.state.favorite.slice();
       }
 
+      //starLighting 에서 쓸 isFavorite 항목 만들어주기
+      //검색 결과가 있는 경우
+      if(data.data.items){
+        var tempItem= data.data.items.slice();
 
-      this.setState({
-        dataItems:tempItem
-      })
+        for(var i=0;i<tempItem.length;i++){
+          tempItem[i].isFavorite=false;
+
+          for(var k=0;k<currentFavorite.length;k++){
+            //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+            if(tempItem[i].link===currentFavorite[k].link){
+              tempItem[i].isFavorite=true;
+            }
+          }
+        }
+
+        this.setState({
+          searchText:searchText, //view more 용 공통 텍스트
+          dataItems:tempItem
+        })
+
+      }else{
+        //검색 결과가 없는 경우
+        this.setState({
+          searchText:searchText,
+          dataItems:"no-result"
+        })
+
+      }
     });
 
   };
@@ -430,29 +526,41 @@ class App extends Component {
 
   starLighting=(index)=>{
     var tempItems = this.state.dataItems.slice();
-
     tempItems[index].isFavorite = !tempItems[index].isFavorite;
+
     this.setState({
       dataItems: tempItems
     });
 
-   //firebase로 전송할 favorite 배열 만들기
-    var sendToFirebase=[];
+   //새로운(현재 선택) favorite 배열 만들기
+    var clickedStarIndex =[];
+
     for(var i=0;i<tempItems.length;i++){
+      //별표클릭 되었는지 확인
       if(tempItems[i].isFavorite){
-        var tempArr=[{
-          "title":tempItems[i].title,
-          "link":tempItems[i].link,
-          "date":new Date()
-        }];
-         sendToFirebase.push(tempArr) ;
-      }
+          var tempObj = {
+            "title": tempItems[i].title,
+            "link": tempItems[i].link,
+            "date": new Date()
+          };
+        clickedStarIndex.push(tempObj);
+        }
     }
 
-    firebase.database().ref(`users/${this.state.userData.uid}`).update({
-        favorite:sendToFirebase,
-    });
+    //////////////////////////////////////
+    //bd favorite + clickedStar favorite//
+    //////////////////////////////////////
+    var currentFavorite=[];
+    //이미 database 에 favorite 가진 경우에는 복사해오기
+    if(this.state.favorite.length!==0){
+      currentFavorite = this.state.favorite.slice();
+    }
+    var totalFavorite=currentFavorite.concat(clickedStarIndex);
 
+    //favorite update
+    firebase.database().ref(`users/${this.state.userData.uid}`).update({
+        favorite:totalFavorite,
+    });
   };
 
   render() {
@@ -487,7 +595,9 @@ class App extends Component {
            popUpScore={this.popUpScore}
          />
 
-        <Favorite/>
+        <Favorite
+          getInputText={this.getInputText}
+        />
 
 
       </div>
