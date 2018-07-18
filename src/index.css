@@ -22,23 +22,28 @@ a{
 
 #main, #favorite{
   display:none;
+  transition: linear 0.5s
 }
 
 #main.current, #favorite.current{
- display:block;
+  display:block;
+  transition: linear 0.5s
 }
 
-.go-to-favorite, .back-to-main{
-  cursor:pointer;
+.go-to-favorite {
+  padding-top:10px;
+  border-top:2px ridge #7d4193;
 }
 
+.back-to-main{
+  padding-bottom:10px;
+  border-bottom:2px ridge #7d4193;
+}
 
 .go-to-favorite:hover, .back-to-main:hover{
   color:white;
+  cursor:pointer;
 }
-
-
-
 
 
 a:hover{
@@ -83,7 +88,7 @@ a:hover{
   background: #8884b1;
   color: white;
   border-radius: 5px;
-  margin:20px auto;
+  margin:10px auto;
 }
 
 .search-btn.dis{

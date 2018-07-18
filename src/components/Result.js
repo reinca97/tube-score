@@ -5,7 +5,7 @@ import ResultEntry from './ResultEntry'
 class Result extends Component {
 
   render() {
-
+console.log(this.props.dataItems)
     return (
       <div className="result-list">
         {this.props.dataItems==="no-result"?
@@ -27,14 +27,12 @@ class Result extends Component {
                 )
 
               })
-
               }
 
-              {this.props.dataItems&&
               <span className="view-more" onClick={this.props.viewMore} >
-                view more
+                {this.props.dataItems.length===0?(""):("view more")}
               </span>
-              }
+
 
 
             </div>

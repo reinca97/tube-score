@@ -8,7 +8,7 @@ class Favorite extends Component {
       <div>
 
         <h1 className="back-to-main" onClick={this.props.returnToMain}>
-          TubeScoer
+          TubeScore
         </h1>
 
         <h3>Favorite</h3>

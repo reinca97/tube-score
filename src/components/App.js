@@ -513,26 +513,28 @@ class App extends Component {
             "title": rawItem[i].title,
             "link": rawItem[i].link,
             "date": new Date(),
-            "isFavorite":false
+            "isFavorite":rawItem[i].isFavorite&&false
+
           };
 
           tempItems.push(tempObj);
         }
 
         // tempItem[i] = {title: ,link: ,date: ,isFavorite:false }
-        console.log(tempItems);
-
         var currentFavorite=[];
         //이미 database 에 favorite 가진 경우에는 복사해오기
         if(this.state.favorite){
           currentFavorite = this.state.favorite.slice();
-        }
 
-        for(var k=0;k<currentFavorite.length;k++){
-          //db favorite 과 일치하는 것 미리 true 로 바꿔주기
-          if(tempItems[i].link===currentFavorite[k].link){
-            tempItems[i].isFavorite=true;
+          for(var i=0;i<tempItems.length;i++){
+            for(var k=0;k<currentFavorite.length;k++){
+              //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+              if(tempItems[i].link===currentFavorite[k].link){
+                tempItems[i].isFavorite=true;
+              }
+            }
           }
+
         }
 
         this.setState({
@@ -541,6 +543,7 @@ class App extends Component {
         })
 
       }else{
+
         //검색 결과가 없는 경우
         this.setState({
           searchText:searchText,
@@ -548,6 +551,7 @@ class App extends Component {
         })
 
       }
+
     });
 
 
@@ -778,7 +782,7 @@ class App extends Component {
           />
 
           <h3 className="go-to-favorite" onClick={this.goToFavorite}>
-            Favorite
+            My Favorite
           </h3>
 
         </div>
