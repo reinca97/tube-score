@@ -27,11 +27,15 @@ class Result extends Component {
                 )
 
               })
+
               }
 
+              {this.props.dataItems&&
               <span className="view-more" onClick={this.props.viewMore} >
                 view more
               </span>
+              }
+
 
             </div>
           )

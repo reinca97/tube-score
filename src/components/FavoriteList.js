@@ -5,10 +5,20 @@ import FavoriteEntry from "./FavoriteEntry";
 class FavoriteList extends Component {
   render() {
     return (
-      <div>
-        FavoriteList
+      <div className="favorite-list">
+        { this.props.favoriteItems&&
+          this.props.favoriteItems.map((item,index)=>{
+            return(
+              <FavoriteEntry
+                starLighting={this.props.starLighting}
+                item={item}
+                index={index}
+                linkUrl={String(item.link)}
+              />
+            )
+          })
+        }
 
-        <FavoriteEntry />
 
       </div>
     );

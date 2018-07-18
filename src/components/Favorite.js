@@ -6,12 +6,23 @@ class Favorite extends Component {
   render() {
     return (
       <div>
-        <h3 className="favorite">Favorite</h3>
+
+        <h1 className="back-to-main" onClick={this.props.returnToMain}>
+          TubeScoer
+        </h1>
+
+        <h3>Favorite</h3>
 
         <FavoriteSearch
           getInputText={this.props.getInputText}
         />
-        <FavoriteList />
+
+        <FavoriteList
+          starLighting={this.props.starLighting}
+          viewMore={this.props.viewMore}
+          favoriteItems={this.props.favoriteItems}
+          popUpScore={this.props.popUpScore}
+        />
 
       </div>
     );

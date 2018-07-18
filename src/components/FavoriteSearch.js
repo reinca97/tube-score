@@ -12,7 +12,6 @@ class FavoriteSearch extends Component {
   render() {
     return (
       <div>
-        FavoriteSearch
 
         <input
           type="text"
