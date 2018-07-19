@@ -3,7 +3,6 @@ export const searchKeywords = (title) =>{
 
   var result=[];
   var movieTitle=title.toUpperCase();
-  console.log(movieTitle);
 
   const composer =[
     "BACH","MOZART","BEETHOVEN","WAGNER","HAYDN","BRAHMS",
@@ -85,7 +84,6 @@ export const searchKeywords = (title) =>{
     }
   }
 
-console.log("filter:",result);
   if(result.length>=4){
     result=result.join(" ");
   }else{

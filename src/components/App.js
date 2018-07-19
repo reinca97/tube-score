@@ -3,9 +3,11 @@ import Profile from './User/Profile'
 import Search from './Search/Search'
 import Result from './Result/Result'
 import Favorite from './Favorite/Favorite'
+import Intro from './Intro'
 import {getYoutubeData} from '../utils/youtube'
 import {getIMSLPData} from '../utils/IMSLP'
 import {searchKeywords} from '../utils/SearchKeywords'
+import {getMuseScoreData} from '../utils/musescore'
 
 import firebase from '../services/firebase'
 // const uuidv4 = require('uuid/v4');
@@ -50,7 +52,8 @@ class App extends Component {
       dataItems:[],
       checkedTempItems:[],
 
-      currentComponent:true
+      currentComponent:"intro",
+      searchEngine:"Intro"
     };
   }
 
@@ -413,16 +416,17 @@ class App extends Component {
 
   //input으로 favorite 내부 검색
   getInputText = (text) =>{
+
     let tempFavorite=this.state.favorite.slice();
     let tempFilterdFavorite=[];
 
     for(var i=0;i<tempFavorite.length;i++){
-      var titleItem=tempFavorite[i].title.toUpperCase();
+
+      let titleItem=tempFavorite[i].title.toUpperCase();
       if(titleItem.indexOf(text.toUpperCase())!==-1){
         tempFilterdFavorite.push(tempFavorite[i]);
       }
     }
-
     this.setState({
       filteredFavorite:tempFilterdFavorite
     })
@@ -433,123 +437,242 @@ class App extends Component {
   onSearchThisScore =()=>{
     var searchText= this.state.videoTitleTap;
 
-    getIMSLPData(searchKeywords(searchText),this.state.currentSearchIndex, (error,data)=>{
+    if(this.state.searchEngine==="IMSLP"){
+      getIMSLPData(
+        searchKeywords(searchText),this.state.currentSearchIndex, (error,data)=>{
 
-      //starLighting 에서 쓸 isFavorite 항목 만들어주기
-      //검색 결과가 있는 경우
-      if(data.data.items){
-        var rawItem= data.data.items.slice();
-        var tempItems=[];
+          //starLighting 에서 쓸 isFavorite 항목 만들어주기
+          //검색 결과가 있는 경우
+          if(data.data.items){
+            var rawItem= data.data.items.slice();
+            var tempItems=[];
 
-        for(var i=0;i<rawItem.length;i++){
+            for(var i=0;i<rawItem.length;i++){
 
-          var tempObj = {
-            "title": rawItem[i].title,
-            "link": rawItem[i].link,
-            "date": new Date(),
-            "isFavorite":rawItem[i].isFavorite&&false
+              var tempObj = {
+                "title": rawItem[i].title,
+                "link": rawItem[i].link,
+                "date": new Date(),
+                "isFavorite":rawItem[i].isFavorite&&false
 
-          };
+              };
 
-          tempItems.push(tempObj);
-        }
-
-        // tempItem[i] = {title: ,link: ,date: ,isFavorite:false }
-        var currentFavorite=[];
-        //이미 database 에 favorite 가진 경우에는 복사해오기
-        if(this.state.favorite){
-          currentFavorite = this.state.favorite.slice();
-
-          for(var i=0;i<tempItems.length;i++){
-            for(var k=0;k<currentFavorite.length;k++){
-              //db favorite 과 일치하는 것 미리 true 로 바꿔주기
-              if(tempItems[i].link===currentFavorite[k].link){
-                tempItems[i].isFavorite=true;
-              }
+              tempItems.push(tempObj);
             }
+
+            // tempItem[i] = {title: ,link: ,date: ,isFavorite:false }
+            var currentFavorite=[];
+            //이미 database 에 favorite 가진 경우에는 복사해오기
+            if(this.state.favorite){
+              currentFavorite = this.state.favorite.slice();
+
+              for(var i=0;i<tempItems.length;i++){
+                for(var k=0;k<currentFavorite.length;k++){
+                  //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+                  if(tempItems[i].link===currentFavorite[k].link){
+                    tempItems[i].isFavorite=true;
+                  }
+                }
+              }
+
+            }
+
+            this.setState({
+              searchText:searchText, //view more 용 공통 텍스트
+              dataItems:tempItems
+            })
+
+          }else{
+
+            //검색 결과가 없는 경우
+            this.setState({
+              searchText:searchText,
+              dataItems:"no-result"
+            })
+
+          }
+
+        });
+
+    }else if(this.state.searchEngine==="MuseScore"){
+      getMuseScoreData(searchKeywords(searchText),(error,data)=>{
+        if(error){
+
+        }else{
+          console.log(data);
+
+          if(data.scores.score.length){
+            var rawItem = data.scores.score.slice();
+            var tempItems=[];
+
+            console.log("raw: ",rawItem);
+            //starLighting obj
+
+            for(var i=0;i<rawItem.length;i++){
+
+              var tempObj = {
+                "title": rawItem[i].title[0],
+                "link": rawItem[i].permalink[0],
+                "date": new Date(),
+                "isFavorite":rawItem[i].isFavorite&&false
+
+              };
+
+              tempItems.push(tempObj);
+            }
+
+            var currentFavorite=[];
+            //이미 database 에 favorite 가진 경우에는 복사해오기
+            if(this.state.favorite){
+              currentFavorite = this.state.favorite.slice();
+
+              for(var i=0;i<tempItems.length;i++){
+                for(var k=0;k<currentFavorite.length;k++){
+                  //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+                  if(tempItems[i].link===currentFavorite[k].link){
+                    tempItems[i].isFavorite=true;
+                  }
+                }
+              }
+
+            }
+
+            this.setState({
+              searchText:searchText, //view more 용 공통 텍스트
+              dataItems:tempItems
+            })
+
+          }else{
+            //검색 결과가 없는 경우
+            this.setState({
+              searchText:searchText,
+              dataItems:"no-result"
+            })
           }
 
         }
-
-        this.setState({
-          searchText:searchText, //view more 용 공통 텍스트
-          dataItems:tempItems
-        })
-
-      }else{
-
-        //검색 결과가 없는 경우
-        this.setState({
-          searchText:searchText,
-          dataItems:"no-result"
-        })
-
-      }
-
-    });
+      })
+    }
 
   };
 
-  // input 의 url 로 IMSLP 악보 찾기 ㄱ ㄱ **위에거 참고해서 수정수정***
+  // input 의 url 로 IMSLP 악보 찾기 ㄱ ㄱ
   onSearchOtherScore=()=>{
     var searchText = this.state.videoTitleOut;
 
-    getIMSLPData(searchKeywords(searchText),this.state.currentSearchIndex, (error,data)=>{
+    if(this.state.searchEngine==="IMSLP"){
+      getIMSLPData(
+        searchKeywords(searchText),this.state.currentSearchIndex, (error,data)=>{
 
-      //starLighting 에서 쓸 isFavorite 항목 만들어주기
-      //검색 결과가 있는 경우
-      if(data.data.items){
-        var rawItem= data.data.items.slice();
-        var tempItems=[];
+          //starLighting 에서 쓸 isFavorite 항목 만들어주기
+          //검색 결과가 있는 경우
+          if(data.data.items){
+            var rawItem= data.data.items.slice();
+            var tempItems=[];
 
-        for(var i=0;i<rawItem.length;i++){
+            for(var i=0;i<rawItem.length;i++){
 
-          var tempObj = {
-            "title": rawItem[i].title,
-            "link": rawItem[i].link,
-            "date": new Date(),
-            "isFavorite":rawItem[i].isFavorite&&false
+              var tempObj = {
+                "title": rawItem[i].title,
+                "link": rawItem[i].link,
+                "date": new Date(),
+                "isFavorite":rawItem[i].isFavorite&&false
 
-          };
+              };
 
-          tempItems.push(tempObj);
-        }
-
-        // tempItem[i] = {title: ,link: ,date: ,isFavorite:false }
-        var currentFavorite=[];
-        //이미 database 에 favorite 가진 경우에는 복사해오기
-        if(this.state.favorite){
-          currentFavorite = this.state.favorite.slice();
-
-          for(var i=0;i<tempItems.length;i++){
-            for(var k=0;k<currentFavorite.length;k++){
-              //db favorite 과 일치하는 것 미리 true 로 바꿔주기
-              if(tempItems[i].link===currentFavorite[k].link){
-                tempItems[i].isFavorite=true;
-              }
+              tempItems.push(tempObj);
             }
+
+            // tempItem[i] = {title: ,link: ,date: ,isFavorite:false }
+            var currentFavorite=[];
+            //이미 database 에 favorite 가진 경우에는 복사해오기
+            if(this.state.favorite){
+              currentFavorite = this.state.favorite.slice();
+
+              for(var i=0;i<tempItems.length;i++){
+                for(var k=0;k<currentFavorite.length;k++){
+                  //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+                  if(tempItems[i].link===currentFavorite[k].link){
+                    tempItems[i].isFavorite=true;
+                  }
+                }
+              }
+
+            }
+
+            this.setState({
+              searchText:searchText, //view more 용 공통 텍스트
+              dataItems:tempItems
+            })
+
+          }else{
+
+            //검색 결과가 없는 경우
+            this.setState({
+              searchText:searchText,
+              dataItems:"no-result"
+            })
+
+          }
+
+        });
+    }else if(this.state.searchEngine==="MuseScore"){
+      getMuseScoreData(searchKeywords(searchText),(error,data)=>{
+        if(error){
+
+        }else{
+          if(data.scores.score.length){
+            var rawItem = data.scores.score.slice();
+            var tempItems=[];
+
+            console.log("raw: ",rawItem);
+            //starLighting obj
+
+            for(var i=0;i<rawItem.length;i++){
+
+              var tempObj = {
+                "title": rawItem[i].title,
+                "link": rawItem[i].permalink,
+                "date": new Date(),
+                "isFavorite":rawItem[i].isFavorite&&false
+
+              };
+
+              tempItems.push(tempObj);
+            }
+
+            var currentFavorite=[];
+            //이미 database 에 favorite 가진 경우에는 복사해오기
+            if(this.state.favorite){
+              currentFavorite = this.state.favorite.slice();
+
+              for(var i=0;i<tempItems.length;i++){
+                for(var k=0;k<currentFavorite.length;k++){
+                  //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+                  if(tempItems[i].link===currentFavorite[k].link){
+                    tempItems[i].isFavorite=true;
+                  }
+                }
+              }
+
+            }
+
+            this.setState({
+              searchText:searchText, //view more 용 공통 텍스트
+              dataItems:tempItems
+            })
+
+          }else{
+            //검색 결과가 없는 경우
+            this.setState({
+              searchText:searchText,
+              dataItems:"no-result"
+            })
           }
 
         }
-
-        this.setState({
-          searchText:searchText, //view more 용 공통 텍스트
-          dataItems:tempItems
-        })
-
-      }else{
-
-        //검색 결과가 없는 경우
-        this.setState({
-          searchText:searchText,
-          dataItems:"no-result"
-        })
-
-      }
-
-    });
-
-
+      })
+    }
   };
 
   viewMore=()=>{
@@ -712,7 +835,7 @@ class App extends Component {
               favorite: tempFavorite,
               filteredFavorite: tempFavorite,
               favoriteCopy: tempFavorite,
-              currentComponent:false
+              currentComponent:"favorite"
             })
 
           }
@@ -736,7 +859,7 @@ class App extends Component {
               favorite: tempFavorite,
               filteredFavorite: tempFavorite,
               favoriteCopy: tempFavorite,
-              currentComponent:true
+              currentComponent:"main"
             })
 
           }
@@ -744,13 +867,37 @@ class App extends Component {
     }
   };
 
+  onSearchIMSLP =()=>{
+    this.setState({
+      currentComponent:"main",
+      searchEngine:"IMSLP"
+    })
+  };
+
+  onSearchMuseScore =() =>{
+    this.setState({
+      currentComponent:"main",
+      searchEngine:"MuseScore"
+    })
+  };
+
+
   render() {
 
     return (
-      <div className="App">
+      <div className={`App ${this.state.searchEngine}`}>
 
-        <div id="main" className={this.state.currentComponent? ("current"):("")}>
-          <h1>TubeScore</h1>
+        <div id="intro"
+             className={this.state.currentComponent==="intro"? ("current"):("")}>
+          <Intro
+            searchIMSLP={this.onSearchIMSLP}
+            searchMuseScore={this.onSearchMuseScore}
+          />
+        </div>
+
+        <div id="main"
+             className={this.state.currentComponent==="main"? ("current"):("")} >
+          <h1 className={this.state.searchEngine}>TubeScore</h1>
 
           <Profile
             userData={this.state.userData}
@@ -782,8 +929,10 @@ class App extends Component {
 
         </div>
 
-        <div id="favorite" className={this.state.currentComponent? (""):("current")} >
+        <div id="favorite"
+             className={this.state.currentComponent==="favorite"? ("current"):("")} >
           <Favorite
+            searchEngine={this.state.searchEngine}
             returnToMain={this.returnToMain}
             getInputText={this.getInputText}
             starLighting={this.favoriteStarLighting}
@@ -797,6 +946,6 @@ class App extends Component {
     );
   }
 
-};
+}
 
 export default App;

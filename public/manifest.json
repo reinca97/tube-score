@@ -16,7 +16,7 @@
   "permissions": [
     "identity",
     "tabs",
-    "http://imslp.org/*/*",
+    "<all_urls>",
     "notifications"
   ],
 

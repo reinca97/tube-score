@@ -18,7 +18,7 @@ class SearchOtherURL extends Component {
         />
 
         <SearchBtn
-          searchBtnText="URL로 악보 찾기"
+          searchBtnText="Search scores of new URL"
           onSearchScore={this.props.onSearchOtherScore}
           isYoutubeUrl={this.props.isYoutubeUrlOut}
         />

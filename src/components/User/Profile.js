@@ -5,10 +5,10 @@ import UserInfo from './UserInfo'
 class Profile extends Component {
   render() {
     return (
-      <div>
+      <div className="profile">
         {
           this.props.isLogin&&
-          <div>환영합니다, {this.props.userData.userName}님! </div>
+          <div>Happy to see you, {this.props.userData.userName}! </div>
         }
 
         <Login

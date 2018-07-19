@@ -13,7 +13,7 @@ class SearchInThisPage extends Component {
         />
 
         <SearchBtn
-          searchBtnText="현재 페이지의 악보 찾기"
+          searchBtnText="Search scores of this page"
           onSearchScore={this.props.onSearchThisScore}
           isYoutubeUrl={this.props.isYoutubeUrlTap}
         />

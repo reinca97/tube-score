@@ -5,13 +5,17 @@ class Login extends Component {
     return (
       <div className="log-in-out">
         {this.props.isLogin&&
-          <button onClick={this.props.onClickLogout} >
+          <button
+            className="log-in-out-btn"
+            onClick={this.props.onClickLogout} >
             Logout
           </button>
         }
 
         {!this.props.isLogin&&
-        <button onClick={this.props.onClickLogin} >
+        <button
+          className="log-in-out-btn"
+          onClick={this.props.onClickLogin} >
           Login
         </button>
         }

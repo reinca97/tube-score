@@ -17,7 +17,7 @@ class FavoriteSearch extends Component {
           type="text"
           onChange={this.onGetInputText}
           className="search-input"
-          placeholder="즐겨찾기 내부 검색"
+          placeholder="Search in my Favorite list"
         />
 
 

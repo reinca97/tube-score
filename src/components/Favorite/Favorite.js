@@ -7,11 +7,14 @@ class Favorite extends Component {
     return (
       <div>
 
-        <h1 className="back-to-main" onClick={this.props.returnToMain}>
+        <h1 className="back-to-main"
+            onClick={this.props.returnToMain}
+            clssName={this.props.searchEngine}
+        >
           TubeScore
         </h1>
 
-        <h3>Favorite</h3>
+        <h3>My Favorite</h3>
 
         <FavoriteSearch
           getInputText={this.props.getInputText}

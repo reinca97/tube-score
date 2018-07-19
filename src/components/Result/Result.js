@@ -11,7 +11,7 @@ class Result extends Component {
         {this.props.dataItems==="no-result"?
           (
             <div className="no-result-entry">
-              검색 결과가 없습니다.
+             No result
             </div>
           ):(
             <div>
@@ -30,7 +30,7 @@ class Result extends Component {
               }
 
               <span className="view-more" onClick={this.props.viewMore} >
-                {this.props.dataItems.length===0?(""):("view more")}
+                {this.props.dataItems.length<10?(""):("view more")}
               </span>
 
 

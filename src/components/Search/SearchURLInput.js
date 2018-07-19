@@ -17,7 +17,7 @@ class SearchURLInput extends Component {
           type="text"
           onChange={this.onGetInputURL}
           className="search-input"
-          placeholder="YOUTUBE URL을 입력하세요"
+          placeholder="Please input a YOUTUBE URL"
         />
 
       </div>
