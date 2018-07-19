@@ -8,7 +8,8 @@ class Profile extends Component {
       <div className="profile">
         {
           this.props.isLogin&&
-          <div>Happy to see you, {this.props.userData.userName}! </div>
+          <div className="welcome"
+          >Happy to see you, {this.props.userData.userName}! </div>
         }
 
         <Login

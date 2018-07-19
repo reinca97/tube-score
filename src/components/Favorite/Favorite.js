@@ -7,9 +7,8 @@ class Favorite extends Component {
     return (
       <div>
 
-        <h1 className="back-to-main"
+        <h1 className={`back-to-main ${this.props.searchEngine}`}
             onClick={this.props.returnToMain}
-            clssName={this.props.searchEngine}
         >
           TubeScore
         </h1>

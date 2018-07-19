@@ -102,7 +102,9 @@ a:hover{
 
 /*UserInfo component */
 
-
+.welcome{
+  padding:10px;
+}
 
 .user-info{
   width:150px;
@@ -123,7 +125,6 @@ a:hover{
 .profile{
   color:#006d4a;
   border-radius: 5px;
-  padding: 9px;
   margin-bottom: 15px;
   background-color: rgba( 255, 255, 255, 0.6 );
 }
