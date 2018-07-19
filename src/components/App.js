@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Profile from './Profile'
-import Search from './Search'
-import Result from './Result'
-import Favorite from './Favorite'
+import Profile from './User/Profile'
+import Search from './Search/Search'
+import Result from './Result/Result'
+import Favorite from './Favorite/Favorite'
 import {getYoutubeData} from '../utils/youtube'
 import {getIMSLPData} from '../utils/IMSLP'
 
@@ -301,12 +301,10 @@ class App extends Component {
 
     firebase.auth().signOut().then(function () {
       // Sign-out successful.
-
     }).catch(function (error) {
       // An error happened.
       throw(error);
     });
-
 
   };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FavoriteStarIcon from './FavoriteStarIcon'
-import FavoriteTitle from './FavoriteTitle'
+import FavoriteStarIcon from '../Favorite/FavoriteStarIcon'
+import FavoriteTitle from '../Favorite/FavoriteTitle'
 
 
 /* global chrome */
