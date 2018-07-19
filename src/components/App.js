@@ -5,6 +5,7 @@ import Result from './Result/Result'
 import Favorite from './Favorite/Favorite'
 import {getYoutubeData} from '../utils/youtube'
 import {getIMSLPData} from '../utils/IMSLP'
+import {searchKeywords} from '../utils/SearchKeywords'
 
 import firebase from '../services/firebase'
 // const uuidv4 = require('uuid/v4');
@@ -319,6 +320,7 @@ class App extends Component {
           });
 
         }else{
+
           // 2)youtube 페이지인 경우: API 요청
           getYoutubeData(tablink, (error, data) => {
             if (error) {
@@ -431,7 +433,7 @@ class App extends Component {
   onSearchThisScore =()=>{
     var searchText= this.state.videoTitleTap;
 
-    getIMSLPData(searchText,this.state.currentSearchIndex, (error,data)=>{
+    getIMSLPData(searchKeywords(searchText),this.state.currentSearchIndex, (error,data)=>{
 
       //starLighting 에서 쓸 isFavorite 항목 만들어주기
       //검색 결과가 있는 경우
@@ -492,7 +494,7 @@ class App extends Component {
   onSearchOtherScore=()=>{
     var searchText = this.state.videoTitleOut;
 
-    getIMSLPData(searchText,this.state.currentSearchIndex, (error,data)=>{
+    getIMSLPData(searchKeywords(searchText),this.state.currentSearchIndex, (error,data)=>{
 
       //starLighting 에서 쓸 isFavorite 항목 만들어주기
       //검색 결과가 있는 경우
