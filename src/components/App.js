@@ -77,7 +77,6 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
             // User is signed in.
-            console.log(user);
 
             var userSetting = {
               userName: user.displayName,
@@ -221,8 +220,6 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
-        console.log(user);
-
         var userSetting = {
           userName: user.displayName,
           userPhotoUrl: user.photoURL,
@@ -328,7 +325,6 @@ class App extends Component {
               window.alert("유효한 주소가 아닙니다. 주소를 다시 확인해주세요.")
 
             } else {
-              console.log(data);
               var tempTitle = "";
               if (data.data.items[0]) {
                 tempTitle = data.data.items[0].snippet.title;
@@ -415,7 +411,6 @@ class App extends Component {
 
   //input으로 favorite 내부 검색
   getInputText = (text) =>{
-    console.log("favoriteSearch",text);
     let tempFavorite=this.state.favorite.slice();
     let tempFilterdFavorite=[];
 
