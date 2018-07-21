@@ -17,12 +17,12 @@ body {
 }
 
 .App.IMSLP{
-  background: url("../src/background-classic.png") no-repeat fixed ;
+  background: url("../src/images/background-classic.png") no-repeat fixed ;
   color: #eee8e5;
 }
 
 .App.MuseScore{
-  background: url("../src/background-nonclassic.png") no-repeat fixed ;
+  background: url("../src/images/background-nonclassic.png") no-repeat fixed ;
   color:  #eee8e5;
 }
 
@@ -74,14 +74,14 @@ li:hover{
 /*intro */
 .intro-select{
   padding:15px;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,0.5);
   border-radius: 5px;
 }
 
 
 .go-to-favorite {
   padding:10px;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,0.8);
   border-radius: 5px;
 }
 
@@ -133,6 +133,7 @@ a:hover{
 .log-in-out{
   margin:10px;
   float:right;
+  font-family: 'Ubuntu Mono', monospace;
 }
 
 .log-in-out:after{
@@ -141,10 +142,16 @@ a:hover{
   clear:both;
 }
 
+.log-in-out-btn{
+  background-color: #008e60;
+  color:white;
+  border-radius: 5px;
+}
+
 /*Search component*/
 .search{
   width: 280px;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,0.8);
   border-radius: 5px;
   padding: 10px
 }
@@ -188,9 +195,10 @@ a:hover{
 }
 
 .no-result-entry{
+  color:#006d4a;
   font-size:15px;
   text-align:center;
-  color: #fff4d6;
+  padding:10px 0;
 }
 
 .result-entry:after{
@@ -223,7 +231,7 @@ a:hover{
 /*favorite component*/
 
 .favorite{
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 5px;
   padding-bottom: 20px;
   padding-top:10px;
