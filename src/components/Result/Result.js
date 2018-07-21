@@ -28,10 +28,14 @@ class Result extends Component {
 
               })
               }
-
-              <span className="view-more" onClick={this.props.viewMore} >
+              {
+                this.props.searchEngine==="IMSLP"&&
+                <span className="view-more" onClick={this.props.viewMore} >
                 {this.props.dataItems.length<10?(""):("view more")}
               </span>
+
+              }
+
 
 
 

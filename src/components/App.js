@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Profile from './User/Profile'
+import Profile from './Profile/Profile'
 import Search from './Search/Search'
 import Result from './Result/Result'
 import Favorite from './Favorite/Favorite'
@@ -10,7 +10,6 @@ import {searchKeywords} from '../utils/SearchKeywords'
 import {getMuseScoreData} from '../utils/musescore'
 
 import firebase from '../services/firebase'
-// const uuidv4 = require('uuid/v4');
 /* global chrome */
 
 
@@ -465,10 +464,10 @@ class App extends Component {
             //이미 database 에 favorite 가진 경우에는 복사해오기
             if(this.state.favorite){
               currentFavorite = this.state.favorite.slice();
-
               for(var i=0;i<tempItems.length;i++){
                 for(var k=0;k<currentFavorite.length;k++){
                   //db favorite 과 일치하는 것 미리 true 로 바꿔주기
+
                   if(tempItems[i].link===currentFavorite[k].link){
                     tempItems[i].isFavorite=true;
                   }
@@ -501,7 +500,7 @@ class App extends Component {
         }else{
           console.log(data);
 
-          if(data.scores.score.length){
+          if(data.scores!==""){
             var rawItem = data.scores.score.slice();
             var tempItems=[];
 
@@ -917,6 +916,7 @@ class App extends Component {
           />
 
           <Result
+            searchEngine={this.state.searchEngine}
             starLighting={this.starLighting}
             viewMore={this.viewMore}
             dataItems={this.state.dataItems}
