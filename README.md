@@ -48,22 +48,12 @@
 - xml parsing 을 위한 xml2js 라이브러리 사용
 - CSS는 별도의 프레임워크를 사용하지 않았습니다.
 
+
+
 ## Server-Side
 
 - Google firebase의 실시간 database 사용
 
-<!-- ## Test -->
-
-<!-- - 자바스크립트 테스트 프레임워크 Mocha -->
-<!-- - BDD / TDD assertion 라이브러리 Chai -->
-
-
-<!-- ## Deployment -->
-
-<!-- ### Client -->
-
-<!-- - AWS S3 Bucket의 Static Website Hosting -->
-<!-- - AWS CloudFront 서비스 대기시간과 성능을 개선(CDN서비스) -->
 
 
 ## Version Control
@@ -71,21 +61,13 @@
 - Web, Server의 독립적인 관리를 위한 GIT Repo 구분
 - Branch, Pull Request 기반 개발 진행
 
+
+
 ## Collaboration Tool
 
 - Trello 스케쥴 관리
 
-<!-- ## DevOps -->
 
-<!-- - Uphere Application은 개발부터 배포까지 상당 부분 자동화되어 있습니다. -->
-<!-- - Uphere Application은 uphere-Web / uphere-Server 두개의 Repo로 관리합니다. -->
-<!-- - Coveralls가 Test Coverage를 시작합니다. -->
-<!-- - dev Branch가 최종적으로 Merge되는 순간 CircleCI가 동작합니다. -->
-<!-- - Webhook 기능으로 모든 과정이 Slack 푸쉬 알림으로 전달됩니다. -->
-<!-- - CircleCI 빌드와 테스트가 통과되면 uphere-Web의 최종본은 AWS S3버킷으로 전달 후, Static Website Hosting 됩니다. -->
-<!-- - AWS CloudFront를 통해 웹사이트 전송을 가속화 합니다. -->
-<!-- - CircleCI 빌드와 테스트를 통과되면 uphere-Server의 최종본은 서버용 AWS S3버킷으로 전달 된 후, AWS EC2 Instance가 저장합니다. -->
-<!-- - AWS CodeDeploy로 자동 배포 됩니다. -->
 
 ## Things to do
 
