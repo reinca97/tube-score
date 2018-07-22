@@ -28,9 +28,7 @@ class App extends Component {
         userEmail: ""
       },
 
-      favorite: [
-        // {date:"0000-00-00",link:"",title:""}
-      ],
+      favorite: [],
       filteredFavorite:[],
       favoriteCopy:[],
 
@@ -694,21 +692,16 @@ class App extends Component {
 
   starLighting=(index)=>{
 
-    //*****1) 현재 result 표시되는 data*****
     var tempItems=[];
     if(this.state.dataItems){
       tempItems = this.state.dataItems.slice();
     }
-    //1에 클릭된 것 반영 (setState 전)
     tempItems[index].isFavorite = !tempItems[index].isFavorite;
 
-    //****2)db 에서 가져온 data*****
     var dbfavoriteItems=[];
-
 
     //1.Light On
     if(tempItems[index].isFavorite){
-      /////////////get db favorite////////////////////
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           firebase.database().ref(`/users/${user.uid}`).once('value')
@@ -728,7 +721,6 @@ class App extends Component {
                 favoriteCopy:dbfavoriteItems
               });
 
-              // db 로 보내버림 ㅂㅂ
               firebase.database().ref(`users/${this.state.userData.uid}`).update({
                 favorite:dbfavoriteItems
               });
@@ -736,20 +728,16 @@ class App extends Component {
             });
         }
       });
-      ///////////////끝///////////////////
 
-      //2. Light Off
+    //2. Light Off
     }else{
 
-      /////////////get db favorite////////////////////
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           firebase.database().ref(`/users/${user.uid}`).once('value')
             .then((snapshot) => {
               var userInfo = (snapshot.val());
-              //****2)db 에서 가져온 data*****
               dbfavoriteItems=userInfo.favorite;
-              //light off item 삭제
 
               if(dbfavoriteItems){
                 for(var i=0;i<dbfavoriteItems.length;i++){
@@ -765,7 +753,6 @@ class App extends Component {
                 favoriteCopy:dbfavoriteItems
               });
 
-              // db 로 보내버림 ㅂㅂ
               firebase.database().ref(`users/${this.state.userData.uid}`).update({
                 favorite:dbfavoriteItems
               });
@@ -773,7 +760,6 @@ class App extends Component {
             });
         }
       });
-      ///////////////끝///////////////////
     }
 
   };
@@ -786,11 +772,9 @@ class App extends Component {
       tempFavoriteCopy = this.state.favoriteCopy.slice();
     }
 
-    //상태 변경
     tempFavoriteCopy[index].isFavorite =
       !tempFavoriteCopy[index].isFavorite;
 
-    //검색용 키워드 정의(현재클릭한애)
     var selectedItemUrl=tempFavoriteCopy[index].link;
 
     //1.Favorite Light Off
@@ -811,7 +795,6 @@ class App extends Component {
       favoriteCopy:tempFavoriteCopy
     });
 
-    // db 로 보내버림 ㅂㅂ
     firebase.database().ref(`users/${this.state.userData.uid}`).update({
       favorite:tempFavorite
     });
@@ -822,11 +805,11 @@ class App extends Component {
   goToFavorite=()=>{
 
     if(this.state.isLogin){
-      //uid로 데이터 읽어오기
+
       firebase.database().ref(`/users/${this.state.userData.uid}`).once('value')
         .then((snapshot) => {
           var userInfo = (snapshot.val());
-          //아이디가 있는경우
+
           if (userInfo) {
             let tempFavorite = userInfo.favorite;
 
@@ -845,11 +828,11 @@ class App extends Component {
 
   returnToMain=()=>{
     if(this.state.isLogin){
-      //uid로 데이터 읽어오기
+
       firebase.database().ref(`/users/${this.state.userData.uid}`).once('value')
         .then((snapshot) => {
           var userInfo = (snapshot.val());
-          //아이디가 있는경우
+
           if (userInfo) {
             let tempFavorite = userInfo.favorite;
 
